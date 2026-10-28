@@ -1,6 +1,6 @@
 # Stark Industries Warehouse
 
-Local-first, single-operator electronics inventory control application generated from the supplied master prompt.
+Local-first, single-user electronics inventory control application generated from the supplied master prompt.
 
 ## Run
 
@@ -11,7 +11,7 @@ The application intentionally has no reorder-point fields, low-stock alerts, reo
 ## Included surfaces
 
 - Local mode is available without an account, login, role, or user-management layer.
-- Optional multi-user cloud mode with Supabase email/password accounts. Each user receives an isolated inventory and dropdown dataset through row-level security, and can open the same account on any phone, tablet, laptop, or PC.
+- Single-user browser page with no login or account system. Data is stored locally in the browser that opens the page.
 - Dark and light themes with a persistent header toggle; the dark industrial theme is the default.
 - Unified search/filter/sort inventory workspace with custody, ownership, valuation and nine-level storage display.
 - Component create/edit/delete controls are intentionally limited to Component ID, Component name, quantity number/unit, price per unit, total value, type, Borrowed From, Lent To, Date Lent, Note, and Current Status.
@@ -20,15 +20,4 @@ The application intentionally has no reorder-point fields, low-stock alerts, reo
 - CSV and XLSX staging import with flexible header matching, duplicate ID skipping, review-before-commit behavior, and exports containing the reduced field set.
 - `sqlite_schema.sql` and `supabase_postgres_schema.sql` for a persistence upgrade path.
 
-## Multi-device setup
-
-The HTML file works locally without configuration. To enable separate accounts and cross-device synchronization:
-
-1. Create a Supabase project.
-2. Run `supabase_postgres_schema.sql` in the Supabase SQL editor. If the tables already exist, run `supabase_rls_migration.sql` instead.
-3. In `stark_industries_warehouse.html`, set `SUPABASE_URL` to the project URL and `SUPABASE_ANON_KEY` to the project's public anon key. Never put a service-role key in the HTML file.
-4. Open the HTML file from a web host or local server on each device. Create an account or sign in; inventory and dropdown options are private to that account.
-
-Supabase email confirmation settings may require confirming the account email before the first sign-in. Local mode remains available when the two configuration constants are blank.
-
-The Supabase security advisor should show RLS enabled for `warehouse_data`, `components`, and `dropdown_options`. Never disable RLS on these tables.
+The online GitHub Pages copy is also a single-user page. Each browser/device keeps its own local data; there is no login or cloud synchronization.
