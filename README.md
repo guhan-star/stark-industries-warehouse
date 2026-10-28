@@ -25,8 +25,10 @@ The application intentionally has no reorder-point fields, low-stock alerts, reo
 The HTML file works locally without configuration. To enable separate accounts and cross-device synchronization:
 
 1. Create a Supabase project.
-2. Run `supabase_postgres_schema.sql` in the Supabase SQL editor.
+2. Run `supabase_postgres_schema.sql` in the Supabase SQL editor. If the tables already exist, run `supabase_rls_migration.sql` instead.
 3. In `stark_industries_warehouse.html`, set `SUPABASE_URL` to the project URL and `SUPABASE_ANON_KEY` to the project's public anon key. Never put a service-role key in the HTML file.
 4. Open the HTML file from a web host or local server on each device. Create an account or sign in; inventory and dropdown options are private to that account.
 
 Supabase email confirmation settings may require confirming the account email before the first sign-in. Local mode remains available when the two configuration constants are blank.
+
+The Supabase security advisor should show RLS enabled for `warehouse_data`, `components`, and `dropdown_options`. Never disable RLS on these tables.
